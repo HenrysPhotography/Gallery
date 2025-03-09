@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Sunset Over the Mountains",
+        "url": "images/sunset.jpg"
+    },
+    {
+        "title": "City Lights at Night",
+        "url": "images/city-lights.jpg"
+    },
+    {
+        "title": "Forest Pathway",
+        "url": "images/forest-path.jpg"
+    },
+    {
+        "title": "Ocean Waves",
+        "url": "images/ocean-waves.jpg"
+    },
+    {
+        "title": "Desert Dunes",
+        "url": "images/desert-dunes.jpg"
+    }
+]
