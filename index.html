@@ -98,7 +98,7 @@
     </style>
     <script>
         async function fetchPhotos() {
-            const response = await fetch('photos.json');
+            const response = await fetch('photos.json', { cache: 'no-store' });
             const photos = await response.json();
             const gallery = document.querySelector('.gallery');
             gallery.innerHTML = '';
@@ -137,6 +137,7 @@
             document.getElementById("fullscreenView").classList.remove("active");
         }
         
+        setInterval(fetchPhotos, 5000);
         window.onload = fetchPhotos;
     </script>
 </head>
