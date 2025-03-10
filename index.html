@@ -5,13 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photography Portfolio</title>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #1e1e1e;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #0b0b2b, #1b2735 70%, #090a0f);
             color: white;
             text-align: center;
+            overflow: hidden;
+        }
+        .stars {
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            background: white;
+            box-shadow: 2vw 5vh 2px white, 10vw 8vh 2px white, 15vw 15vh 1px white,
+                22vw 22vh 1px white, 28vw 12vh 2px white, 32vw 32vh 1px white,
+                38vw 18vh 2px white, 42vw 35vh 1px white, 48vw 25vh 2px white,
+                53vw 42vh 1px white, 58vw 15vh 2px white, 63vw 38vh 1px white,
+                68vw 28vh 2px white, 73vw 45vh 1px white, 78vw 32vh 2px white,
+                83vw 48vh 1px white, 88vw 20vh 2px white, 93vw 52vh 1px white,
+                98vw 35vh 2px white, 5vw 60vh 1px white, 12vw 65vh 2px white,
+                18vw 72vh 1px white, 25vw 78vh 2px white, 30vw 85vh 1px white,
+                35vw 68vh 2px white, 40vw 82vh 1px white, 45vw 92vh 2px white,
+                50vw 75vh 1px white, 55vw 88vh 2px white, 60vw 95vh 1px white,
+                65vw 72vh 2px white, 70vw 85vh 1px white, 75vw 78vh 2px white,
+                80vw 92vh 1px white, 85vw 82vh 2px white, 90vw 88vh 1px white,
+                95vw 75vh 2px white;
+            animation: twinkle 8s infinite linear;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.4; }
         }
         header {
             background: linear-gradient(135deg, #ff7eb3, #ff758c);
@@ -73,28 +102,6 @@
         .fullscreen.active {
             display: flex;
         }
-        .about {
-            padding: 40px;
-            background: #282828;
-            border-radius: 10px;
-            margin: 20px auto;
-            max-width: 600px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 1s ease-in-out;
-        }
-        footer {
-            background: linear-gradient(135deg, #ff7eb3, #ff758c);
-            color: white;
-            padding: 15px;
-            font-size: 14px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
     <script>
         async function fetchPhotos() {
@@ -111,49 +118,19 @@
                 gallery.appendChild(img);
             });
         }
-        
-        function searchPhotos() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let images = document.querySelectorAll('.gallery img');
-            
-            images.forEach(img => {
-                let altText = img.alt.toLowerCase();
-                if (altText.includes(input)) {
-                    img.style.display = "block";
-                } else {
-                    img.style.display = "none";
-                }
-            });
-        }
-        
-        function openFullScreen(src) {
-            let fullscreenDiv = document.getElementById("fullscreenView");
-            let fullscreenImg = document.getElementById("fullscreenImg");
-            fullscreenImg.src = src;
-            fullscreenDiv.classList.add("active");
-        }
-        
-        function closeFullScreen() {
-            document.getElementById("fullscreenView").classList.remove("active");
-        }
-        
         setInterval(fetchPhotos, 5000);
         window.onload = fetchPhotos;
     </script>
 </head>
 <body>
+    <div class="stars"></div>
     <header>My Photography Portfolio</header>
     <div class="search-bar">
         <input type="text" id="searchInput" onkeyup="searchPhotos()" placeholder="Search photos...">
     </div>
     <section class="gallery"></section>
-    <section class="about">
-        <h2>About Me</h2>
-        <p>I'm a passionate photographer capturing the beauty of the world through my lens.</p>
-    </section>
     <div id="fullscreenView" class="fullscreen" onclick="closeFullScreen()">
         <img id="fullscreenImg" src="" alt="Fullscreen Image">
     </div>
-    <footer>&copy; 2025 My Photography</footer>
 </body>
 </html>
