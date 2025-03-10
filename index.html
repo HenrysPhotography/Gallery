@@ -32,7 +32,7 @@
                 98vw 35vh 2px white, 5vw 60vh 1px white, 12vw 65vh 2px white,
                 18vw 72vh 1px white, 25vw 78vh 2px white, 30vw 85vh 1px white,
                 35vw 68vh 2px white, 40vw 82vh 1px white, 45vw 92vh 2px white,
-                50vw 75vh 2px white, 55vw 88vh 2px white, 60vw 95vh 1px white,
+                50vw 75vh 1px white, 55vw 88vh 2px white, 60vw 95vh 1px white,
                 65vw 72vh 2px white, 70vw 85vh 1px white, 75vw 78vh 2px white,
                 80vw 92vh 1px white, 85vw 82vh 2px white, 90vw 88vh 1px white,
                 95vw 75vh 2px white;
@@ -49,11 +49,7 @@
             background: linear-gradient(90deg, white, transparent);
             animation: shoot 3s infinite ease-in;
         }
-        .shooting-star:nth-child(1) { top: 20%; left: -100px; animation-delay: 0s; }
-        .shooting-star:nth-child(2) { top: 35%; left: -100px; animation-delay: 1s; }
-        .shooting-star:nth-child(3) { top: 50%; left: -100px; animation-delay: 2s; }
-        .shooting-star:nth-child(4) { top: 65%; left: -100px; animation-delay: 3s; }
-        .shooting-star:nth-child(5) { top: 80%; left: -100px; animation-delay: 4s; }
+        .shooting-star:nth-child(n) { top: calc(20% + 15% * (n - 1)); left: -100px; animation-delay: calc(n * 1s); }
         @keyframes shoot {
             0% {
                 transform: translateX(0) translateY(0) rotate(25deg);
@@ -125,6 +121,29 @@
             display: flex;
         }
     </style>
+    <script>
+        async function loadPhotos() {
+            const response = await fetch('photos.json');
+            const photos = await response.json();
+            const gallery = document.querySelector('.gallery');
+            gallery.innerHTML = '';
+            photos.forEach(photo => {
+                let img = document.createElement('img');
+                img.src = photo.url;
+                img.alt = photo.description;
+                img.onclick = () => openFullScreen(photo.url);
+                gallery.appendChild(img);
+            });
+        }
+        function openFullScreen(url) {
+            document.getElementById('fullscreenImg').src = url;
+            document.getElementById('fullscreenView').classList.add('active');
+        }
+        function closeFullScreen() {
+            document.getElementById('fullscreenView').classList.remove('active');
+        }
+        window.onload = loadPhotos;
+    </script>
 </head>
 <body>
     <div class="stars"></div>
@@ -135,7 +154,7 @@
     <div class="shooting-star"></div>
     <header>My Photography Portfolio</header>
     <div class="search-bar">
-        <input type="text" id="searchInput" onkeyup="searchPhotos()" placeholder="Search photos...">
+        <input type="text" id="searchInput" placeholder="Search photos...">
     </div>
     <section class="gallery"></section>
     <div id="fullscreenView" class="fullscreen" onclick="closeFullScreen()">
