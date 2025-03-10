@@ -1,22 +1,22 @@
 [
     {
-        "title": "Wham Stadium 1",
-        "url": "https://i.ibb.co/SDPThBpZ/1000004918-01.jpg"
+        "url": "https://i.ibb.co/SDPThBpZ/1000004918-01.jpg",
+        "description": "Wham Stadium 1"
     },
     {
-        "title": "City Lights at Night",
-        "url": "images/city-lights.jpg"
+        "url": "images/photo2.jpg",
+        "description": "City skyline at night"
     },
     {
-        "title": "Forest Pathway",
-        "url": "images/forest-path.jpg"
+        "url": "images/photo3.jpg",
+        "description": "Forest trail in autumn"
     },
     {
-        "title": "Ocean Waves",
-        "url": "images/ocean-waves.jpg"
+        "url": "images/photo4.jpg",
+        "description": "Starry night over the lake"
     },
     {
-        "title": "Desert Dunes",
-        "url": "images/desert-dunes.jpg"
+        "url": "images/photo5.jpg",
+        "description": "Waves crashing on the shore"
     }
 ]
